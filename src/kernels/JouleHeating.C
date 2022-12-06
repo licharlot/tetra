@@ -8,7 +8,7 @@ JouleHeating::validParams()
   InputParameters params = ADKernelValue::validParams();
   params.addClassDescription("Compute the peltier heating effect given by the following: "
                              "-$ \\sigma \\nabla u \\cdot \\nabla u \\phi $");
-  // params.addRequiredCoupledVar("temp", "temperature_variable");
+  params.addRequiredCoupledVar("temp", "temperature_variable");
 
   // params.addRequiredParam<MaterialPropertyName>(
   //     "seebeck_val",
