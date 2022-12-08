@@ -15,6 +15,7 @@ InputParameters
 PeltierBC::validParams()
 {
   InputParameters params = ADIntegratedBC::validParams();
+  params.addRequiredCoupledVar("temp", "The temperature variable");
   params.addClassDescription("Compute the outflow boundary condition.");
   return params;
 }
