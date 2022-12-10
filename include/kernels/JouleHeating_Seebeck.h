@@ -4,20 +4,20 @@
 /**
  * Computes the residual contribution: grad_u - S(T) * grad_temp
  */
-class Peltier_Energy : public ADKernelValue
+class JouleHeating_Seebeck : public ADKernelValue
 {
 public:
   static InputParameters validParams();
 
-  Peltier_Energy(const InputParameters & parameters);
+  JouleHeating_Seebeck(const InputParameters & parameters);
 
 protected:
   /// ADKernel objects must override precomputeQpResidual
   virtual ADReal precomputeQpResidual() override;
 
   /// The variables which hold the value for seabeck
-  // const ADVariableValue & _temp;
+  const ADVariableGradient & _grad_temp;
 
-  // const ADMaterialProperty<Real> & _seebeck;
+  const ADMaterialProperty<Real> & _seebeck;
   const ADMaterialProperty<Real> & _resistance;
 };

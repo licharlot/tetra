@@ -1,14 +1,14 @@
-#include "Seebeck_Energy.h"
+#include "ThomsonEnergy.h"
 
-registerMooseObject("TetraApp", Seebeck_Energy);
+registerMooseObject("TetraApp", ThomsonEnergy);
 
 InputParameters
-Seebeck_Energy::validParams()
+ThomsonEnergy::validParams()
 {
   InputParameters params = ADKernel::validParams();
   params.addClassDescription("Compute the energy potentials given by the following: "
-                             "$(\\sigma \\alpha T \\grad u)$");
-  params.addRequiredCoupledVar("temp", "temperature_variable");
+                             "$\\sigma \\alpha^{2} T \\nabla T $");
+  // params.addRequiredCoupledVar("temp", "temperature_variable");
 
   // params.addRequiredParam<MaterialPropertyName>(
   //     "seebeck_val",
@@ -17,20 +17,19 @@ Seebeck_Energy::validParams()
   return params;
 }
 
-Seebeck_Energy::Seebeck_Energy(const InputParameters & parameters)
+ThomsonEnergy::ThomsonEnergy(const InputParameters & parameters)
   : ADKernelGrad(parameters),
 
-    _temp(adCoupledValue("temp")),
     _seebeck(getADMaterialProperty<Real>("seebeck")),
     _resistance(getADMaterialProperty<Real>("resistance"))
 {
 }
 
 ADRealVectorValue
-Seebeck_Energy::precomputeQpResidual()
+ThomsonEnergy::precomputeQpResidual()
 {
   // return _seebeck_val[_qp] * _grad_u[_qp];
   // return _grad_u[_qp] - _seebeck[_qp] * _grad_temp[_qp];
 
-  return (_seebeck[_qp] / _resistance[_qp]) * _temp[_qp] * _grad_u[_qp];
+  return (_seebeck[_qp] * _seebeck[_qp] / _resistance[_qp]) * _u[_qp] * _grad_u[_qp];
 }

@@ -1,14 +1,14 @@
-#include "Conduction_Energy.h"
+#include "PeltierEnergy.h"
 
-registerMooseObject("TetraApp", Conduction_Energy);
+registerMooseObject("TetraApp", PeltierEnergy);
 
 InputParameters
-Conduction_Energy::validParams()
+PeltierEnergy::validParams()
 {
   InputParameters params = ADKernel::validParams();
-  params.addClassDescription("Compute the energy potentials given by the following: "
-                             "$E = S(T) \\nabla T$");
-  // params.addRequiredCoupledVar("temp", "temperature_variable");
+  params.addClassDescription("Compute the energy potential by : "
+                             "$(\\nabla \\alpha T \\nabla u)$");
+  params.addRequiredCoupledVar("temp", "temperature_variable");
 
   // params.addRequiredParam<MaterialPropertyName>(
   //     "seebeck_val",
@@ -17,19 +17,20 @@ Conduction_Energy::validParams()
   return params;
 }
 
-Conduction_Energy::Conduction_Energy(const InputParameters & parameters)
+PeltierEnergy::PeltierEnergy(const InputParameters & parameters)
   : ADKernelGrad(parameters),
 
+    _temp(adCoupledValue("temp")),
     _seebeck(getADMaterialProperty<Real>("seebeck")),
     _resistance(getADMaterialProperty<Real>("resistance"))
 {
 }
 
 ADRealVectorValue
-Conduction_Energy::precomputeQpResidual()
+PeltierEnergy::precomputeQpResidual()
 {
   // return _seebeck_val[_qp] * _grad_u[_qp];
   // return _grad_u[_qp] - _seebeck[_qp] * _grad_temp[_qp];
 
-  return (_seebeck[_qp] * _seebeck[_qp] / _resistance[_qp]) * _u[_qp] * _grad_u[_qp];
+  return (_seebeck[_qp] / _resistance[_qp]) * _temp[_qp] * _grad_u[_qp];
 }

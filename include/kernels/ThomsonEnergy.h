@@ -4,19 +4,19 @@
 /**
  * Computes the residual contribution: grad_u - S(T) * grad_temp
  */
-class Seebeck_Energy : public ADKernelGrad
+class ThomsonEnergy : public ADKernelGrad
 {
 public:
   static InputParameters validParams();
 
-  Seebeck_Energy(const InputParameters & parameters);
+  ThomsonEnergy(const InputParameters & parameters);
 
 protected:
   /// ADKernel objects must override precomputeQpResidual
   virtual ADRealVectorValue precomputeQpResidual() override;
 
   /// The variables which hold the value for seabeck
-  const ADVariableValue & _temp;
+  // const ADVariableValue & _temp;
 
   const ADMaterialProperty<Real> & _seebeck;
   const ADMaterialProperty<Real> & _resistance;

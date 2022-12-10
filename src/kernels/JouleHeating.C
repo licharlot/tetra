@@ -6,9 +6,9 @@ InputParameters
 JouleHeating::validParams()
 {
   InputParameters params = ADKernelValue::validParams();
-  params.addClassDescription("Compute the peltier heating effect given by the following: "
+  params.addClassDescription("Compute the joule heating : "
                              "-$ \\sigma \\nabla u \\cdot \\nabla u \\phi $");
-  params.addRequiredCoupledVar("temp", "temperature_variable");
+  // params.addRequiredCoupledVar("temp", "temperature_variable");
 
   // params.addRequiredParam<MaterialPropertyName>(
   //     "seebeck_val",
@@ -19,9 +19,8 @@ JouleHeating::validParams()
 
 JouleHeating::JouleHeating(const InputParameters & parameters)
   : ADKernelValue(parameters),
-    _grad_temp(adCoupledGradient("temp")),
 
-    _seebeck(getADMaterialProperty<Real>("seebeck")),
+    // _seebeck(getADMaterialProperty<Real>("seebeck")),
     _resistance(getADMaterialProperty<Real>("resistance"))
 {
 }
@@ -33,6 +32,5 @@ JouleHeating::precomputeQpResidual()
   // return _grad_u[_qp] - _seebeck[_qp] * _grad_temp[_qp];
 
   // return -(_seebeck[_qp] * _seebeck[_qp] / _resistance[_qp]) * _u[_qp] * _grad_u[_qp];
-  // return -_seebeck[_qp] * _grad_u[_qp] * _grad_u[_qp] * _test[_i][_qp];
-  return -(_seebeck[_qp] / _resistance[_qp]) * _grad_temp[_qp] * _grad_u[_qp];
+  return -(1 / _resistance[_qp]) * _grad_u[_qp] * _grad_u[_qp];
 }
