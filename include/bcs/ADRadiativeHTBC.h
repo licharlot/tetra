@@ -18,6 +18,12 @@ protected:
 
   /// Stefan-Boltzmann constant
   const ADReal _stefan_boltzmann_constant;
+
+  /// Area of the boundary
+  const ADReal _Area;
+
+  /// _Celsius toggle
+  const bool _Celsius;
   /// Far-field temperature variable
   const ADMaterialProperty<Real> & _T_infinity;
 
