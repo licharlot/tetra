@@ -5,7 +5,7 @@ registerMooseObject("TetraApp", ThomsonEnergy);
 InputParameters
 ThomsonEnergy::validParams()
 {
-  InputParameters params = ADKernel::validParams();
+  InputParameters params = ADKernelGrad::validParams();
   params.addClassDescription("Compute the energy potentials given by the following: "
                              "$\\sigma \\alpha^{2} T \\nabla T $");
   // params.addRequiredCoupledVar("temp", "temperature_variable");

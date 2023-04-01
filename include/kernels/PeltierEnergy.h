@@ -16,8 +16,8 @@ protected:
   virtual ADRealVectorValue precomputeQpResidual() override;
 
   /// The variables which hold the value for seabeck
-  const ADVariableValue & _temp;
-
+  // const ADVariableValue & _temp;
+  const ADVariableGradient & _grad_elec;
   const ADMaterialProperty<Real> & _seebeck;
   const ADMaterialProperty<Real> & _resistance;
 };

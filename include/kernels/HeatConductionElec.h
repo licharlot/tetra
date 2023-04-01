@@ -4,16 +4,16 @@
 /**
  * Computes the residual contribution: grad_u - S(T) * grad_temp
  */
-class ElectricConduction : public ADKernelGrad
+class HeatConductionElec : public ADKernelGrad
 {
 public:
   static InputParameters validParams();
 
-  ElectricConduction(const InputParameters & parameters);
+  HeatConductionElec(const InputParameters & parameters);
 
 protected:
   /// ADKernel objects must override precomputeQpResidual
   virtual ADRealVectorValue precomputeQpResidual() override;
 
-  const ADMaterialProperty<Real> & _resistance;
+  const ADMaterialProperty<Real> & _thermal_conductivity;
 };
