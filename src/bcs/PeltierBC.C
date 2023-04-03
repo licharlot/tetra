@@ -15,15 +15,15 @@ InputParameters
 PeltierBC::validParams()
 {
   InputParameters params = ADIntegratedBC::validParams();
-  params.addRequiredCoupledVar("temp", "The temperature variable");
-  params.addClassDescription("Compute the outflow boundary condition.");
+  params.addRequiredCoupledVar("elec", "The electrical potential");
+  params.addClassDescription("Compute the interface head generated from peltier.");
   return params;
 }
 
 PeltierBC::PeltierBC(const InputParameters & parameters)
   : ADIntegratedBC(parameters),
     // _thermal_conductivity(getADMaterialProperty<Real>("thermal_conductivity")),
-    _temp(adCoupledValue("temp")),
+    _grad_elec(adCoupledGradient("elec")),
     _seebeck(getADMaterialProperty<Real>("seebeck")),
     _resistance(getADMaterialProperty<Real>("resistance"))
 {
@@ -33,6 +33,6 @@ ADReal
 PeltierBC::computeQpResidual()
 {
   // return -_test[_i][_qp] * _thermal_conductivity[_qp] * _grad_u[_qp] * _normals[_qp];
-  return -_test[_i][_qp] * (_seebeck[_qp] / _resistance[_qp]) * _temp[_qp] * _grad_u[_qp] *
+  return -_test[_i][_qp] * (_seebeck[_qp] / _resistance[_qp]) * _u[_qp] * _grad_elec[_qp] *
          _normals[_qp];
 }

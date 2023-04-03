@@ -38,7 +38,7 @@ protected:
    */
   virtual ADReal computeQpResidual() override;
 
-  const ADVariableValue & _temp;
+  const ADVariableGradient & _grad_elec;
 
   const ADMaterialProperty<Real> & _seebeck;
   const ADMaterialProperty<Real> & _resistance;

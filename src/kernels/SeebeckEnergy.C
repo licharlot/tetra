@@ -25,5 +25,5 @@ SeebeckEnergy::SeebeckEnergy(const InputParameters & parameters)
 ADRealVectorValue
 SeebeckEnergy::precomputeQpResidual()
 {
-  return (_seebeck[_qp] / _resistance[_qp]) * _grad_temp[_qp];
+  return -(_seebeck[_qp] / _resistance[_qp]) * _grad_temp[_qp];
 }

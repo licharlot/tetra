@@ -21,5 +21,5 @@ ElectricConduction::ElectricConduction(const InputParameters & parameters)
 ADRealVectorValue
 ElectricConduction::precomputeQpResidual()
 {
-  return (1 / _resistance[_qp]) * _grad_u[_qp];
+  return -(1 / _resistance[_qp]) * _grad_u[_qp];
 }

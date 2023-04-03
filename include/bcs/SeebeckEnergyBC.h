@@ -24,6 +24,7 @@
  * See also: Griffiths, David F. "The 'no boundary condition' outflow
  * boundary condition.", International Journal for Numerical Methods
  * in Fluids, vol. 24, no. 4, 1997, pp. 393-411.
+ *
  */
 class SeebeckEnergyBC : public ADIntegratedBC
 {
