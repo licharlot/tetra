@@ -18,12 +18,12 @@ JouleHeating_Seebeck::JouleHeating_Seebeck(const InputParameters & parameters)
     _grad_elec(adCoupledGradient("elec")),
 
     _seebeck(getADMaterialProperty<Real>("seebeck")),
-    _resistance(getADMaterialProperty<Real>("resistance"))
+    _resistivity(getADMaterialProperty<Real>("resistivity"))
 {
 }
 
 ADReal
 JouleHeating_Seebeck::precomputeQpResidual()
 {
-  return -(_seebeck[_qp] / _resistance[_qp]) * _grad_u[_qp] * _grad_elec[_qp];
+  return -(_seebeck[_qp] / _resistivity[_qp]) * _grad_u[_qp] * _grad_elec[_qp];
 }

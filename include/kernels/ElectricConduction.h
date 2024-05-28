@@ -15,5 +15,5 @@ protected:
   /// ADKernel objects must override precomputeQpResidual
   virtual ADRealVectorValue precomputeQpResidual() override;
 
-  const ADMaterialProperty<Real> & _resistance;
+  const ADMaterialProperty<Real> & _resistivity;
 };

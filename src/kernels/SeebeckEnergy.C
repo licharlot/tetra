@@ -18,12 +18,12 @@ SeebeckEnergy::SeebeckEnergy(const InputParameters & parameters)
     _grad_temp(adCoupledGradient("temp")),
 
     _seebeck(getADMaterialProperty<Real>("seebeck")),
-    _resistance(getADMaterialProperty<Real>("resistance"))
+    _resistivity(getADMaterialProperty<Real>("resistivity"))
 {
 }
 
 ADRealVectorValue
 SeebeckEnergy::precomputeQpResidual()
 {
-  return -(_seebeck[_qp] / _resistance[_qp]) * _grad_temp[_qp];
+  return -(_seebeck[_qp] / _resistivity[_qp]) * _grad_temp[_qp];
 }
