@@ -1,13 +1,54 @@
 Content:
     Tetra:
         root_dir: ${ROOT_DIR}/doc/content
-    moose:
+    framework:
         root_dir: ${MOOSE_DIR}/framework/doc/content
+    python:
+        root_dir: ${MOOSE_DIR}/python/doc/content
+    modules:
+        root_dir: ${MOOSE_DIR}/modules/doc/content
         content:
-            - js/*
-            - css/*
-            - contrib/**
-            - media/**
+            - application_development/build_system.md
+            - application_development/test_system.md
+            - application_development/performance_benchmarking.md
+            - application_development/debugging.md
+            - application_usage/command_line_usage.md
+            - application_usage/failed_solves.md
+            - application_usage/input_syntax.md
+            - application_usage/restart_recover.md
+            - help/development/analyze_jacobian.md
+            - help/development/Atom_Editor.md
+            - help/development/VSCode.md
+            - help/inl/*
+            - media/*
+            - media/application_development/falcon_compile_speed.png
+            - ncrc/**
+            - getting_started/installation/install_miniconda.md
+            - getting_started/installation/install_peacock.md
+    fluid_properties:
+        root_dir: ${MOOSE_DIR}/modules/fluid_properties/doc/content
+    heat_transfer:
+        root_dir: ${MOOSE_DIR}/modules/heat_transfer/doc/content
+    misc:
+        root_dir: ${MOOSE_DIR}/modules/misc/doc/content
+    navier_stokes:
+        root_dir: ${MOOSE_DIR}/modules/navier_stokes/doc/content
+    optimization:
+        root_dir: ${MOOSE_DIR}/modules/optimization/doc/content
+    ray_tracing:
+        root_dir: ${MOOSE_DIR}/modules/ray_tracing/doc/content
+    rdg:
+        root_dir: ${MOOSE_DIR}/modules/rdg/doc/content
+    reactor:
+        root_dir: ${MOOSE_DIR}/modules/reactor/doc/content
+    solid_properties:
+        root_dir: ${MOOSE_DIR}/modules/solid_properties/doc/content
+    stochastic_tools:
+        root_dir: ${MOOSE_DIR}/modules/stochastic_tools/doc/content
+    thermal_hydraulics:
+        root_dir: ${MOOSE_DIR}/modules/thermal_hydraulics/doc/content
+    thermal_hydraulics_test:
+        root_dir: ${MOOSE_DIR}/modules/thermal_hydraulics/test/doc/content
 
 Renderer:
     type: MooseDocs.base.MaterializeRenderer
@@ -15,8 +56,48 @@ Renderer:
 Extensions:
     MooseDocs.extensions.navigation:
         name: Tetra
+        repo: https://github.inl.gov/ncrc/sockeye
+        menu:
+            News: news/index.md
+            Documentation:
+                Syntax Reference: tetra_syntax.md
+
+        scrollspy: false
+        breadcrumbs: true
     MooseDocs.extensions.appsyntax:
         executable: ${ROOT_DIR}
-        remove: !include ${MOOSE_DIR}/framework/doc/remove.yml
+        allow-test-objects: true
+        unregister:
+            framework: !include ${MOOSE_DIR}/framework/doc/unregister.yml
+
+        remove:
+            framework: !include ${MOOSE_DIR}/framework/doc/remove.yml
         includes:
-            - include
+            - ${ROOT_DIR}/include
+            - ${MOOSE_DIR}/framework/include
+            - ${MOOSE_DIR}/modules/fluid_properties/include
+            - ${MOOSE_DIR}/modules/heat_transfer/include
+            - ${MOOSE_DIR}/modules/misc/include
+            - ${MOOSE_DIR}/modules/navier_stokes/include
+            - ${MOOSE_DIR}/modules/ray_tracing/include
+            - ${MOOSE_DIR}/modules/rdg/include
+            - ${MOOSE_DIR}/modules/reactor/include
+            - ${MOOSE_DIR}/modules/solid_properties/include
+            - ${MOOSE_DIR}/modules/stochastic_tools/include
+            - ${MOOSE_DIR}/modules/thermal_hydraulics/include
+
+    MooseDocs.extensions.common:
+        shortcuts:
+            framework: !include ${MOOSE_DIR}/framework/doc/globals.yml
+    MooseDocs.extensions.acronym:
+        acronyms: !include ${MOOSE_DIR}/framework/doc/acronyms.yml
+    MooseDocs.extensions.bibtex:
+        duplicate_warning: false
+    MooseDocs.extensions.template:
+        active: true
+    MooseDocs.extensions.algorithm:
+        active: true
+    MooseDocs.extensions.modal:
+        exceptions:
+            - '*.i'
+            - '*.py'

@@ -27,14 +27,14 @@ include $(FRAMEWORK_DIR)/moose.mk
 ALL_MODULES                 := no
 
 CHEMICAL_REACTIONS          := no
-CONTACT                     := no
+CONTACT                     := yes
 ELECTROMAGNETICS            := no
 EXTERNAL_PETSC_SOLVER       := no
 FLUID_PROPERTIES            := no
 FSI                         := no
 FUNCTIONAL_EXPANSION_TOOLS  := no
 GEOCHEMISTRY                := no
-HEAT_CONDUCTION             := no
+HEAT_TRANSFER               := yes
 LEVEL_SET                   := no
 MISC                        := no
 NAVIER_STOKES               := no
@@ -45,9 +45,9 @@ RAY_TRACING                 := no
 REACTOR                     := no
 RDG                         := no
 RICHARDS                    := no
-STOCHASTIC_TOOLS            := no
+STOCHASTIC_TOOLS            := yes
 THERMAL_HYDRAULICS          := no
-TENSOR_MECHANICS            := no
+SOLID_MECHANICS            := yes
 XFEM                        := no
 
 include $(MOOSE_DIR)/modules/modules.mk

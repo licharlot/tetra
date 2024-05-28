@@ -14,12 +14,12 @@ ElectricConduction::validParams()
 ElectricConduction::ElectricConduction(const InputParameters & parameters)
   : ADKernelGrad(parameters),
 
-    _resistance(getADMaterialProperty<Real>("resistance"))
+    _resistivity(getADMaterialProperty<Real>("resistivity"))
 {
 }
 
 ADRealVectorValue
 ElectricConduction::precomputeQpResidual()
 {
-  return -(1 / _resistance[_qp]) * _grad_u[_qp];
+  return (-1 / _resistivity[_qp]) * _grad_u[_qp];
 }

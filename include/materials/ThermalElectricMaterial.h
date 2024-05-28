@@ -30,9 +30,13 @@ private:
   GenericMaterialProperty<Real, is_ad> & _seebeck;
   const Function * const _seebeck_temperature_function;
 
-  const Real _my_resistance;
-  GenericMaterialProperty<Real, is_ad> & _resistance;
-  const Function * const _resistance_temperature_function;
+  const Real _my_resistivity;
+  GenericMaterialProperty<Real, is_ad> & _resistivity;
+  const Function * const _resistivity_temperature_function;
+
+  GenericMaterialProperty<Real, is_ad> & _Peltier;
+  GenericMaterialProperty<Real, is_ad> & _Thomson;
+  GenericMaterialProperty<Real, is_ad> & _elec_conductivity;
 };
 
 typedef ThermalElectricMaterialTempl<false> ThermalElectricMaterial;

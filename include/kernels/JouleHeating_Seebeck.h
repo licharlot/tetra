@@ -19,5 +19,5 @@ protected:
   const ADVariableGradient & _grad_elec;
 
   const ADMaterialProperty<Real> & _seebeck;
-  const ADMaterialProperty<Real> & _resistance;
+  const ADMaterialProperty<Real> & _resistivity;
 };

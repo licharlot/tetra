@@ -22,7 +22,7 @@ JouleHeating::JouleHeating(const InputParameters & parameters)
 
     _grad_elec(adCoupledGradient("elec")),
     // _seebeck(getADMaterialProperty<Real>("seebeck")),
-    _resistance(getADMaterialProperty<Real>("resistance"))
+    _resistivity(getADMaterialProperty<Real>("resistivity"))
 {
 }
 
@@ -32,6 +32,6 @@ JouleHeating::precomputeQpResidual()
   // return _seebeck_val[_qp] * _grad_u[_qp];
   // return _grad_u[_qp] - _seebeck[_qp] * _grad_temp[_qp];
 
-  // return -(_seebeck[_qp] * _seebeck[_qp] / _resistance[_qp]) * _u[_qp] * _grad_u[_qp];
-  return -(1 / _resistance[_qp]) * _grad_elec[_qp] * _grad_elec[_qp];
+  // return -(_seebeck[_qp] * _seebeck[_qp] / _resistivity[_qp]) * _u[_qp] * _grad_u[_qp];
+  return -(1 / _resistivity[_qp]) * _grad_elec[_qp] * _grad_elec[_qp];
 }

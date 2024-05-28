@@ -8,6 +8,9 @@ InputParameters
 TetraApp::validParams()
 {
   InputParameters params = MooseApp::validParams();
+  params.set<bool>("use_legacy_output_syntax") = false;
+  params.set<bool>("use_legacy_material_output") = false;
+  params.set<bool>("use_legacy_initial_residual_evaluation_bahavior") = false;
 
   return params;
 }
@@ -22,7 +25,8 @@ TetraApp::~TetraApp() {}
 void
 TetraApp::registerAll(Factory & f, ActionFactory & af, Syntax & syntax)
 {
-  ModulesApp::registerAll(f, af, syntax);
+  // ModulesApp::registerAll(f, af, syntax);
+  ModulesApp::registerAllObjects<TetraApp>(f, af, syntax);
   Registry::registerObjectsTo(f, {"TetraApp"});
   Registry::registerActionsTo(af, {"TetraApp"});
 
