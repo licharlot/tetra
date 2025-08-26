@@ -22,7 +22,7 @@ ThermalElectricMaterialTempl<is_ad>::validParams()
 
   params.addClassDescription("General purpose Thermal Electric material to define"
                              "Seebeck coefficient and electric resistivity using constants or functions"
-                             "and derived electirc conductivity, Thomson and Peltier coefficients");
+                             "and derived electric conductivity, Thomson and Peltier coefficients");
 
   return params;
 }

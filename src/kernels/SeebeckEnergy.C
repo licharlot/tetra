@@ -9,7 +9,7 @@ SeebeckEnergy::validParams()
   params.addClassDescription("Computes the contribution of the Seebeck effect "
                              "to the current density continuity equation: "
                              "$(\\sigma S \\nabla T \\nabla \\phi )$");
-  params.addRequiredCoupledVar("temp", "temperature_variable");
+  params.addRequiredCoupledVar("temp", "Temperature variable");
   return params;
 }
 

@@ -11,8 +11,7 @@ TEJouleHeat::validParams()
 
   params.addRequiredCoupledVar("elec", "Electrical potential variable");
   params.addClassDescription("Calculates the heat source term corresponding to electrostatic Joule "
-                             "heating, with Jacobian contributions calculated using the automatic "
-                             "differentiation system.");
+                             "heating.");
   return params;
 }
 

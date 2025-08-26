@@ -7,7 +7,7 @@ PeltierHeat::validParams()
 {
   InputParameters params = ADKernelGrad::validParams();
   params.addClassDescription("Computes the heat source from Peltier and Thomson effects : "
-                             "$ ST J \\nabla \\phi$");
+                             "$\\int ST J \\nabla \\phi d\\Omega$");
   return params;
 }
 
