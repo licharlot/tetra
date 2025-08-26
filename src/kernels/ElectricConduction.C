@@ -6,8 +6,8 @@ InputParameters
 ElectricConduction::validParams()
 {
   InputParameters params = ADKernelGrad::validParams();
-  params.addClassDescription("Compute the electric conduction potential by : "
-                             "$(\\sigma \\nabla u )$");
+  params.addClassDescription("Computes contribution from electric potential to  the electric conduction potential by : "
+                             "$(\\sigma \\nabla V \\nabla \\phi )$");
   return params;
 }
 

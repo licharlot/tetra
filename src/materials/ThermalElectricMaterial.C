@@ -1,12 +1,3 @@
-// This file is part of the MOOSE framework
-// https://www.mooseframework.org
-//
-// All rights reserved, see COPYRIGHT for full restrictions
-// https://github.com/idaholab/moose/blob/master/COPYRIGHT
-//
-// Licensed under LGPL 2.1, please see LICENSE for details
-// https://www.gnu.org/licenses/lgpl-2.1.html
-
 #include "ThermalElectricMaterial.h"
 #include "Function.h"
 #include "libmesh/quadrature.h"
@@ -29,7 +20,9 @@ ThermalElectricMaterialTempl<is_ad>::validParams()
                                 "",
                                 "Electrical resistivity as a function of temperature.");
 
-  params.addClassDescription("General Purpose Thermal Electric Material with inputs from Seebeck");
+  params.addClassDescription("General purpose Thermal Electric material to define"
+                             "Seebeck coefficient and electric resistivity using constants or functions"
+                             "and derived electirc conductivity, Thomson and Peltier coefficients");
 
   return params;
 }

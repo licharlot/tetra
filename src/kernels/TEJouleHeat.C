@@ -1,12 +1,3 @@
-//* This file is part of the MOOSE framework
-//* https://www.mooseframework.org
-//*
-//* All rights reserved, see COPYRIGHT for full restrictions
-//* https://github.com/idaholab/moose/blob/master/COPYRIGHT
-//*
-//* Licensed under LGPL 2.1, please see LICENSE for details
-//* https://www.gnu.org/licenses/lgpl-2.1.html
-
 #include "TEJouleHeat.h"
 
 registerMooseObject("TetraApp", TEJouleHeat);
@@ -16,7 +7,7 @@ TEJouleHeat::validParams()
 {
   InputParameters params = ADKernelValue::validParams();
   params.addParam<MaterialPropertyName>("current_density",
-                                        "Current density material for joule heating.");
+                                        "Current density material for Joule heating.");
 
   params.addRequiredCoupledVar("elec", "Electrical potential variable");
   params.addClassDescription("Calculates the heat source term corresponding to electrostatic Joule "
@@ -35,5 +26,5 @@ TEJouleHeat::TEJouleHeat(const InputParameters & parameters)
 ADReal
 TEJouleHeat::precomputeQpResidual()
 {
-  return -_grad_elec[_qp] * _J[_qp];
+  return -std::abs(_grad_elec[_qp] * _J[_qp]);
 }

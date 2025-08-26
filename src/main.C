@@ -8,20 +8,11 @@
 //* https://www.gnu.org/licenses/lgpl-2.1.html
 
 #include "TetraTestApp.h"
-#include "MooseInit.h"
-#include "Moose.h"
-#include "MooseApp.h"
-#include "AppFactory.h"
 #include "MooseMain.h"
-
-// Create a performance log
-PerfLog Moose::perf_log("Tetra");
 
 // Begin the main program.
 int
 main(int argc, char * argv[])
 {
-  Moose::main<TetraTestApp>(argc, argv);
-
-  return 0;
+  return Moose::main<TetraTestApp>(argc, argv);
 }
