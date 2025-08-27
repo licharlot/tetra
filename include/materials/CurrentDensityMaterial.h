@@ -1,20 +1,10 @@
-//* This file is part of the MOOSE framework
-//* https://www.mooseframework.org
-//*
-//* All rights reserved, see COPYRIGHT for full restrictions
-//* https://github.com/idaholab/moose/blob/master/COPYRIGHT
-//*
-//* Licensed under LGPL 2.1, please see LICENSE for details
-//* https://www.gnu.org/licenses/lgpl-2.1.html
-
 #pragma once
 
 #include "Material.h"
 
 /**
- * This material automatically declares as functor material properties whatever is passed to it
- * through the parameters 'prop_names' and uses the gradients of the functors from 'prop_values'
- * as the values for those properties.
+ * This material declares the current density material using the electric potential
+ * and the seebeck effect
  */
 
 class CurrentDensityMaterial : public Material
@@ -27,9 +17,14 @@ public:
 protected:
   virtual void computeQpProperties();
 
+  /// Electric potential gradient
   const ADVariableGradient & _grad_elec;
+  /// Temperature gradient
   const ADVariableGradient & _grad_temp;
+  /// Seebeck coefficient
   const ADMaterialProperty<Real> & _seebeck;
+  /// Electric resistivity
   const ADMaterialProperty<Real> & _resistivity;
+  /// Current density
   ADMaterialProperty<RealVectorValue> & _current_density;
 };

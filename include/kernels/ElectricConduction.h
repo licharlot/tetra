@@ -2,7 +2,7 @@
 #include "ADKernelGrad.h"
 
 /**
- * Computes the residual contribution: grad_u - S(T) * grad_temp
+ * Computes the residual contribution: sigma * grad_elec grad_phi
  */
 class ElectricConduction : public ADKernelGrad
 {
@@ -12,7 +12,6 @@ public:
   ElectricConduction(const InputParameters & parameters);
 
 protected:
-  /// ADKernel objects must override precomputeQpResidual
   virtual ADRealVectorValue precomputeQpResidual() override;
 
   const ADMaterialProperty<Real> & _resistivity;

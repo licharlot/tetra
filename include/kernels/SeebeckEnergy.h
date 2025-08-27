@@ -1,8 +1,7 @@
-// Including the "ADKernel" base class here so we can extend it
 #include "ADKernelGrad.h"
 
 /**
- * Computes the residual contribution: grad_u - S(T) * grad_temp
+ * Computes the residual contribution: sigma S grad_T grad_phi
  */
 class SeebeckEnergy : public ADKernelGrad
 {
@@ -12,12 +11,12 @@ public:
   SeebeckEnergy(const InputParameters & parameters);
 
 protected:
-  /// ADKernel objects must override precomputeQpResidual
   virtual ADRealVectorValue precomputeQpResidual() override;
 
-  /// The variables which hold the value for seebeck;
+  /// Temperature gradient
   const ADVariableGradient & _grad_temp;
-
+  /// Seebeck coefficient
   const ADMaterialProperty<Real> & _seebeck;
+  /// Electric resistivity
   const ADMaterialProperty<Real> & _resistivity;
 };

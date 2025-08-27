@@ -6,8 +6,8 @@ InputParameters
 PeltierHeat::validParams()
 {
   InputParameters params = ADKernelGrad::validParams();
-  params.addClassDescription("Compute the energy potential by : "
-                             "$(\\sigma \\alpha \\nabla u  )$");
+  params.addClassDescription("Computes the heat source from Peltier and Thomson effects : "
+                             "$\\int ST J \\nabla \\phi d\\Omega$");
   return params;
 }
 

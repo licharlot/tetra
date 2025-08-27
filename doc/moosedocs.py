@@ -12,12 +12,22 @@ import sys
 import os
 
 # Locate MOOSE directory
-MOOSE_DIR = os.getenv('MOOSE_DIR', os.path.abspath(os.path.join(os.path.dirname(__name__), '..', 'moose')))
+os.chdir(os.path.realpath(os.path.dirname(__file__)))
+MOOSE_DIR = os.getenv('MOOSE_DIR', os.path.join(os.getcwd(), '..', 'moose'))
+
 if not os.path.exists(MOOSE_DIR):
-    MOOSE_DIR = os.path.abspath(os.path.join(os.path.dirname(__name__), '..', '..', 'moose'))
+    MOOSE_DIR = os.getenv(
+        'MOOSE_DIR', os.path.join(os.getcwd(), '..', 'moose'))
+if not os.path.exists(os.path.join(MOOSE_DIR, 'libmesh')):
+    MOOSE_DIR = os.path.join(os.getcwd(), '..', '..', 'moose')
 if not os.path.exists(MOOSE_DIR):
-    raise Exception('Failed to locate MOOSE, specify the MOOSE_DIR environment variable.')
+    raise Exception(
+        'Failed to locate MOOSE, specify the MOOSE_DIR environment variable.')
 os.environ['MOOSE_DIR'] = MOOSE_DIR
+
+if 'TETRA_DIR' not in os.environ:
+    os.environ['TETRA_DIR'] = os.path.abspath(
+        os.path.join(os.path.dirname(__file__), '..'))
 
 # Append MOOSE python directory
 MOOSE_PYTHON_DIR = os.path.join(MOOSE_DIR, 'python')

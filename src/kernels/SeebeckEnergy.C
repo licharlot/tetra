@@ -6,9 +6,10 @@ InputParameters
 SeebeckEnergy::validParams()
 {
   InputParameters params = ADKernelGrad::validParams();
-  params.addClassDescription("Compute the energy potential by : "
-                             "$(\\sigma \\alpha \\nabla u  )$");
-  params.addRequiredCoupledVar("temp", "temperature_variable");
+  params.addClassDescription("Computes the contribution of the Seebeck effect "
+                             "to the current density continuity equation: "
+                             "$(\\sigma S \\nabla T \\nabla \\phi )$");
+  params.addRequiredCoupledVar("temp", "Temperature variable");
   return params;
 }
 
