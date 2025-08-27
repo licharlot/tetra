@@ -1,18 +1,13 @@
-#!/usr/bin/env python
-# /*************************************************/
-# /*           DO NOT MODIFY THIS HEADER           */
-# /*                                               */
-# /*                     RELAP-7                   */
-# /*                                               */
-# /*    (c) 2015 Battelle Energy Alliance, LLC     */
-# /*            ALL RIGHTS RESERVED                */
-# /*                                               */
-# /*   Prepared by Battelle Energy Alliance, LLC   */
-# /*     Under Contract No. DE-AC07-05ID14517      */
-# /*     With the U. S. Department of Energy       */
-# /*                                               */
-# /*     See COPYRIGHT for full restrictions       */
-# /*************************************************/
+#!/usr/bin/env python3
+#* This file is part of the MOOSE framework
+#* https://www.mooseframework.org
+#*
+#* All rights reserved, see COPYRIGHT for full restrictions
+#* https://github.com/idaholab/moose/blob/master/COPYRIGHT
+#*
+#* Licensed under LGPL 2.1, please see LICENSE for details
+#* https://www.gnu.org/licenses/lgpl-2.1.html
+
 import sys
 import os
 
@@ -30,18 +25,8 @@ if not os.path.exists(MOOSE_DIR):
         'Failed to locate MOOSE, specify the MOOSE_DIR environment variable.')
 os.environ['MOOSE_DIR'] = MOOSE_DIR
 
-# Locate IAPWS95 submodule
-if 'IAPWS95_DIR' not in os.environ:
-    os.environ['IAPWS95_DIR'] = os.path.abspath(
-        os.path.join(os.path.dirname(__file__), '..', 'iapws95'))
-
-# Locate PARA_HYDROGEN submodule
-if 'PARA_HYDROGEN_DIR' not in os.environ:
-    os.environ['PARA_HYDROGEN_DIR'] = os.path.abspath(
-        os.path.join(os.path.dirname(__file__), '..', 'para_hydrogen'))
-
-if 'RELAP7_DIR' not in os.environ:
-    os.environ['RELAP7_DIR'] = os.path.abspath(
+if 'TETRA_DIR' not in os.environ:
+    os.environ['TETRA_DIR'] = os.path.abspath(
         os.path.join(os.path.dirname(__file__), '..'))
 
 # Append MOOSE python directory
