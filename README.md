@@ -1,6 +1,7 @@
 Tetra
 =====
 
-"Fork Tetra" to create a new MOOSE-based application.
+## ThermoElectric Transport and Response Analysis
 
-For more information see: [http://mooseframework.org/create-an-app/](http://mooseframework.org/create-an-app/)
+This MOOSE-based application is used to solve the coupled current continuity and heat conduction equations in the presence of Seebeck, Peltier, and Thomson effects to evaluate the performance of thermoelectric devices.
+
